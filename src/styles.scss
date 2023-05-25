@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --darkBrown: #3e2723;
+    --Brown: #b9a488;
+    --mediumBrown: #c0b097;
+    --sand: #f6d9c7;
+    --lightSand: #e4d4c4;
+    --darkGrey: #2f2d2e;
+    --darkerGrey: #1a191a;
+    --ardoise: #2c2d2f;
+    --lightGrey: #d2d2d2b0;
+    --lightGreySolid: #d2d2d2;
+    --px-color-font: rgb(235, 237, 243);
+    --px-color-bodybg: rgb(19, 26, 41);
+  }
+  
+  .bg-Red {
+    background-color: rgba(80, 17, 17, 0.432);
+  }
+  
+  .bg-None {
+    background-color: transparent !important;
+  }
+  
+  .bg-Ardoise {
+    background-color: var(--ardoise) !important;
+  }
+  
+  .txt-LightSand {
+    color: var(--lightSand) !important;
+  }
+  .txt-Ardoise {
+    color: var(--ardoise) !important;
+  }
+
+  .txt-LightGrey {
+    color: var(--lightGreySolid) !important;
+  }
+  
+  .bshadow {
+    box-shadow: -1px 7px 9px -4px rgba(0,0,0,0.44) !important;
+  }
+  
+  

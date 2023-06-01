@@ -1,11 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Categories } from "../models/categories.model";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class CategorieService {
+
+    constructor( private http: HttpClient){
+
+    }
 
     categoriesList: Categories[] = [
         {
@@ -27,8 +33,8 @@ export class CategorieService {
 
     ];
 
-    getAllCategories(): Categories[] {
-        return this.categoriesList
+    getAllCategories():Observable<Categories[]> {
+        return this.http.get<Categories[]>('https://diane.amorce.org/api/categories')
     }
 
     getCategorieById(id: number): void {

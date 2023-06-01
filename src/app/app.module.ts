@@ -7,6 +7,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

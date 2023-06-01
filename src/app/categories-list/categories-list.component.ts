@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categories } from '../models/categories.model';
 import { CategorieService } from '../services/categories.services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-categories-list',
@@ -9,12 +10,13 @@ import { CategorieService } from '../services/categories.services';
 })
 export class CategoriesListComponent implements OnInit {
 
-  categoriesList! : Categories[];
+  //categoriesList! : Categories[];
+  categories$!: Observable<Categories[]>
 
   constructor(private categorieService: CategorieService){}
 
   ngOnInit(): void {
-    this.categoriesList = this.categorieService.getAllCategories();
+   // this.categoriesList = this.categorieService.getAllCategories();
   }
   }
 

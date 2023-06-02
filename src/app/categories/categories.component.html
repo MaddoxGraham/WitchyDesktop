@@ -1,7 +1,11 @@
 
 <div class="card mt-2" style="width: 18rem;">
-    <button class="card-body btn ">
-      <h5 class="card-title" >{{ categories.nomination }}</h5>
-      <p class="card-subtitle mb-2 text-muted">See all product from {{ categories.slug }} </p>
-    </button>
-  </div>
+  <button class="card-body btn">
+    <h5 class="card-title">{{ categories.nomination }}</h5>
+    <ul *ngIf="categories.subCategories != null" >   je suis ici  {{ categories.subCategories }}
+    <li  *ngFor="let subCategorie of categories.subCategories | async">
+      {{ subCategorie.nomination }} e suis la 
+    </li> </ul>
+    <p class="card-subtitle mb-2 text-muted">See all product from {{ categories.slug }}</p>
+  </button>
+</div>

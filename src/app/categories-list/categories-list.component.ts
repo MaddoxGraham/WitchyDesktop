@@ -10,13 +10,14 @@ import { Observable } from 'rxjs';
 })
 export class CategoriesListComponent implements OnInit {
 
-  //categoriesList! : Categories[];
+  categoriesList! : Categories[];
   categories$!: Observable<Categories[]>
 
   constructor(private categorieService: CategorieService){}
 
   ngOnInit(): void {
-   // this.categoriesList = this.categorieService.getAllCategories();
+   this.categories$ = this.categorieService.getAllCategories();
+   
   }
   }
 

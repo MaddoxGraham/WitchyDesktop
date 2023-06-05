@@ -7,7 +7,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ProduitsComponent } from './produits/produits.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http'
     CategoriesComponent,
     HeaderComponent,
     CategoriesListComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ProduitsComponent
   ],
   imports: [
     BrowserModule,

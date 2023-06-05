@@ -1,4 +1,3 @@
-import { Observable } from "rxjs";
 
 export class Categories {
     constructor(public id:number,

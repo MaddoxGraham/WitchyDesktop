@@ -5,6 +5,6 @@ export class Categories {
         public parentId:number | null,
         public nomination:string,
         public slug:string,
-        public subCategories: Observable<Categories[]> | null ){}
+        public subCategories: Categories[] | null ){}
 
 }

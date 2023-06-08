@@ -8,7 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProduitsComponent } from './produits/produits.component'
+import { ProduitsComponent } from './produits/produits.component';
+import { ProduitsListComponent } from './produits-list/produits-list.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ProduitsComponent } from './produits/produits.component'
     HeaderComponent,
     CategoriesListComponent,
     LandingPageComponent,
-    ProduitsComponent
+    ProduitsComponent,
+    ProduitsListComponent
   ],
   imports: [
     BrowserModule,

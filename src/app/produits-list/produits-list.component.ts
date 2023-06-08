@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Produits } from '../models/produits.model';
 import { ProduitService } from '../services/produits.services';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-produits-list',
@@ -13,10 +14,22 @@ export class ProduitsListComponent implements OnInit {
   produits$!: Observable<Produits[]>
 
 
-  constructor(private produitService: ProduitService){}
+  constructor(
+    private route: ActivatedRoute,
+    private produitService: ProduitService){}
 
   ngOnInit(): void{
-    this.produits$ = this.produitService.getAllProduits();
-  }
 
+    const categoryId = +this.route.snapshot.params['id'];
+
+
+
+    
+this.produits$ = this.produitService.getAllProduits().pipe(
+  map(produits => produits.filter(produit => produit.categorie === `/api/categories/${categoryId}`)),
+  tap(produits => {
+   console.log(produits); // Affiche les produits filtrés dans la console
+ })
+)
+  }
 }

@@ -10,17 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProduitsComponent implements OnInit{
 
-  produits!: Produits
-  buttonSlug!: string;
+  @Input() produits!: Produits
+  
 
 
   constructor(private produitService : ProduitService,
               private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    const idCategorie = +this.route.snapshot.params['id'];
-    this.produits = this.produitService.getProduitByCategorie(idCategorie);
-    
-  }
 
+}
 }

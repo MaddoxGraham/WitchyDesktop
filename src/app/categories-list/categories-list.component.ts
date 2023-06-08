@@ -13,11 +13,13 @@ export class CategoriesListComponent implements OnInit {
   categoriesList! : Categories[];
   categories$!: Observable<Categories[]>
 
-  constructor(private categorieService: CategorieService){}
+  constructor(
+    private categorieService: CategorieService){}
 
   ngOnInit(): void {
    this.categories$ = this.categorieService.getAllCategories();
    
   }
+
   }
 

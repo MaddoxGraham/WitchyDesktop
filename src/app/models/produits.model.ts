@@ -5,7 +5,7 @@ export class Produits{
         public LongLibel:string,
         public prxHt:number,
         public slug:string,
-        public categorie : number,
+        public categorie : string,
         public photos:any[]
         ){}
 

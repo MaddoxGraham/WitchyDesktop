@@ -24,10 +24,6 @@ export class ProduitService {
         return photoUrls.map(url => this.http.get(url));
       }
     
-      getProduitByCategorie(idCategorie: number): Observable<Produits[]> {
-        return this.getAllProduits().pipe(
-          map(produits => produits.filter(produit => produit.id === idCategorie))
-        );
-      }
+      
 
 }

@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProduitsListComponent implements OnInit {
 
   produits$!: Observable<Produits[]>
-
+  photosData! : string[]
 
   constructor(
     private route: ActivatedRoute,
@@ -21,9 +21,6 @@ export class ProduitsListComponent implements OnInit {
   ngOnInit(): void{
 
     const categoryId = +this.route.snapshot.params['id'];
-
-
-
     
 this.produits$ = this.produitService.getAllProduits().pipe(
   map(produits => produits.filter(produit => produit.categorie === `/api/categories/${categoryId}`)),

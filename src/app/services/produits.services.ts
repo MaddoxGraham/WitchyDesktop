@@ -19,11 +19,5 @@ export class ProduitService {
     getAllProduits():Observable<Produits[]> {
         return this.http.get<Produits[]>('https://diane.amorce.org/api/produits')
     }
-    
-    getPhotosData(photoUrls: string[]): Observable<any>[] {
-        return photoUrls.map(url => this.http.get(url));
-      }
-    
-      
 
-}
+} 

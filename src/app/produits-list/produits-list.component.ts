@@ -3,6 +3,7 @@ import { Produits } from '../models/produits.model';
 import { ProduitService } from '../services/produits.services';
 import { Observable, map, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Photos } from '../models/photos.model';
 
 @Component({
   selector: 'app-produits-list',
@@ -13,6 +14,8 @@ export class ProduitsListComponent implements OnInit {
 
   produits$!: Observable<Produits[]>
   photosData! : string[]
+  photos$!: Observable<Photos[]>;
+
 
   constructor(
     private route: ActivatedRoute,

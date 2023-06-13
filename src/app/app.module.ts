@@ -9,7 +9,8 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProduitsComponent } from './produits/produits.component';
-import { ProduitsListComponent } from './produits-list/produits-list.component'
+import { ProduitsListComponent } from './produits-list/produits-list.component';
+import { SingleProduitComponent } from './single-produit/single-produit.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProduitsListComponent } from './produits-list/produits-list.component'
     CategoriesListComponent,
     LandingPageComponent,
     ProduitsComponent,
-    ProduitsListComponent
+    ProduitsListComponent,
+    SingleProduitComponent
   ],
   imports: [
     BrowserModule,

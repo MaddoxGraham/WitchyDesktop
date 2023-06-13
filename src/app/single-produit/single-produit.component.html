@@ -1,0 +1,32 @@
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="container mt-3" *ngFor="let produit of produit$ | async">
+            <h2> {{ produit.ShortLibel }}</h2>
+            <p>{{ produit.LongLibel }} </p>
+
+            
+        </div>
+        
+      <div class="col-md-6">
+        <!-- Formulaire de modification -->
+        <form>
+          <div class="mb-3">
+            <label for="nomProduit" class="form-label">Nom du produit</label>
+            <input type="text" class="form-control" id="nomProduit">
+          </div>
+          <div class="mb-3">
+            <label for="descriptionProduit" class="form-label">Description du produit</label>
+            <textarea class="form-control" id="descriptionProduit"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="prixProduit" class="form-label">Prix du produit</label>
+            <input type="number" class="form-control" id="prixProduit">
+          </div>
+          <!-- Autres champs de modification -->
+          <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        </form>
+      </div>
+    </div>
+  </div>

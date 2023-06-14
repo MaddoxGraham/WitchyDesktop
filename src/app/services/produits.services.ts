@@ -22,12 +22,12 @@ export class ProduitService {
     }
 
     getAllPhotoByRef(ref: number): Observable<Photos[]>{
-        const url = `https://127.0.0.1:8000/api/photos?RefProduit=${ref}`;
+        const url = `https://diane.amorce.org/api/photos?RefProduit=${ref}`;
         return this.http.get<Photos[]>(url);
     }
 
     getProduitById(id:number): Observable<Produits[]>{
-        const url= `https://127.0.0.1:8000/api/produits?id=${id}`;
+        const url= `https://diane.amorce.org/api/produits?id=${id}`;
         return this.http.get<Produits[]>(url);
     }
 

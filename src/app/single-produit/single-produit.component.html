@@ -1,13 +1,20 @@
-<div class="container mt-3">
+<div class="container mt-5">
     <div class="row">
       <div class="col-md-6">
 
         <div class="container mt-3" *ngFor="let produit of produit$ | async">
-            <h2> {{ produit.ShortLibel }}</h2>
-            <p>{{ produit.LongLibel }} </p>
+
+            <h2 class="mb-3"> {{ produit.ShortLibel }}</h2>
+            <p class="mb-3">{{ produit.LongLibel }} </p>
+            <p class="mb-3 display-6">{{ produit.prxHt }} €</p>
+
+            <div *ngFor="let photo of photos$ | async">
+              je suis la 
+              <img [src]="photo.src" alt="Photo" style="max-height: 90px;" class="mr-2">
+            </div>
 
             
-        </div>
+        </div>  </div>
         
       <div class="col-md-6">
         <!-- Formulaire de modification -->

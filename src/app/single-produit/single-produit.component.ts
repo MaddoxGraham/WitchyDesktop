@@ -4,6 +4,7 @@ import { ProduitService } from '../services/produits.services';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Photos } from '../models/photos.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-single-produit',
@@ -16,6 +17,11 @@ export class SingleProduitComponent implements OnInit  {
     produit$!: Observable<Produits[]>;
     photos$!: Observable<Photos[]>;
 
+
+    ShortLibel!: string;
+    LongLibel!: string;
+    prxHt!: number;
+
     constructor(private produitService: ProduitService,
                 private route: ActivatedRoute) {}
 
@@ -23,8 +29,10 @@ export class SingleProduitComponent implements OnInit  {
         const produit = +this.route.snapshot.params['id'];
         this.produit$ = this.produitService.getProduitById(produit);
         
-          console.log();
-        //this.photos$ = this.produitService.getAllPhotoByRef(this.produit.id);
+        this.photos$ = this.produitService.getAllPhotoByRef(produit);
       }
 
+      onSubmitForm(form: NgForm){
+        console.log(form.value);
+      }
 }

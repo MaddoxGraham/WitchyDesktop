@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProduitsComponent } from './produits/produits.component';
 import { ProduitsListComponent } from './produits-list/produits-list.component';
 import { SingleProduitComponent } from './single-produit/single-produit.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SingleProduitComponent } from './single-produit/single-produit.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

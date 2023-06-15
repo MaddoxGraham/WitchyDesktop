@@ -4,12 +4,14 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ProduitsListComponent } from './produits-list/produits-list.component';
 import { SingleProduitComponent } from './single-produit/single-produit.component';
+import { NewProduitComponent } from './new-produit/new-produit.component';
 
 const routes: Routes = [
   { path: 'categories', component: CategoriesListComponent  },
   { path: '', component: LandingPageComponent},
   { path: 'categorie/:id', component: ProduitsListComponent },
-  { path: 'categorie/produit/:id', component: SingleProduitComponent }
+  { path: 'categorie/produit/new', component: NewProduitComponent },
+  { path: 'categorie/produit/:id', component: SingleProduitComponent },
 
 ];
 

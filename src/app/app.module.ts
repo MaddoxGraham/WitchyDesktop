@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProduitsComponent } from './produits/produits.component';
 import { ProduitsListComponent } from './produits-list/produits-list.component';
 import { SingleProduitComponent } from './single-produit/single-produit.component'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewProduitComponent } from './new-produit/new-produit.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,15 @@ import { FormsModule } from '@angular/forms';
     LandingPageComponent,
     ProduitsComponent,
     ProduitsListComponent,
-    SingleProduitComponent
+    SingleProduitComponent,
+    NewProduitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,10 +7,10 @@
             <h2 class="mb-3"> {{ produit.ShortLibel }}</h2>
             <p class="mb-3">{{ produit.LongLibel }} </p>
             <p class="mb-3 display-6">{{ produit.prxHt }} €</p>
-<div class="d-flex flex-row " >
+<div class="d-flex flex-row flex-wrap" >
   <div *ngFor="let photo of photos$ | async">
             
-              <img [src]="photo.src" alt="Photo" style="max-height: 120px;" class="me-2">
+              <img [src]="photo.src" alt="Photo" style="max-height: 120px;" class="me-2 mb-2">
             </div>
 </div>
           

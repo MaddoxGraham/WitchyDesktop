@@ -11,9 +11,9 @@ import { filter, map } from 'rxjs/operators';
 export class CategorieService {
 
     constructor( private http: HttpClient){
-
     }
 
+    currentCategoryId!: number | null;
     categoriesList: Categories[] = [
 
 
@@ -35,6 +35,18 @@ export class CategorieService {
         if (!categorie) {
             throw new Error('categorie not found');
         }
-
     }
+
+
+    /********* Gestion de la sauvegarde de la sous categorie courante  */
+
+    setCurrentCategoryId(categoryId: number): void {
+
+        this.currentCategoryId = categoryId;
+      }
+    
+      getCurrentCategoryId(): number | null {
+        return this.currentCategoryId;
+      }
+
 }

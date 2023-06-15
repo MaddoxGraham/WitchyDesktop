@@ -1,7 +1,13 @@
 <div class="container mt-4">
-    <div class="row">
-      <div class="col-12">
-        <app-produits *ngFor="let produit of produits$ | async" [produits]="produit"></app-produits>
-      </div>
+  <div class="row">
+    <div class="col-12">
+      <app-produits *ngFor="let produit of produits$ | async" [produits]="produit"></app-produits>
     </div>
   </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3">
+  <button (click)="navigateToNew()" class="btn btn-primary rounded-circle" style="font-size: 30px;">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produits } from '../models/produits.model';
 import { ProduitService } from '../services/produits.services';
 import { Observable, map, tap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Photos } from '../models/photos.model';
 
 @Component({
@@ -19,7 +19,8 @@ export class ProduitsListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private produitService: ProduitService){}
+    private produitService: ProduitService,
+    private router:Router){}
 
   ngOnInit(): void{
 
@@ -32,4 +33,10 @@ this.produits$ = this.produitService.getAllProduits().pipe(
  })
 )
   }
+ 
+  navigateToNew(): void {
+    this.router.navigateByUrl('categorie/produit/new');
+  }
+
+
 }

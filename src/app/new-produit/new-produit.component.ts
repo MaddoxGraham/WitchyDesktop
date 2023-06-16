@@ -48,6 +48,8 @@ export class NewProduitComponent implements OnInit{
 }
 }
 
+
+/************** WARNING ! modifier pour éviter l'instanciation si un autre champs est remplis en premier.  */
 function slugify(text: string): string {
   const normalizedText = text.replace(/[^a-zA-Z0-9\s]/g, "").toLowerCase();
   const slug = normalizedText.replace(/\s+/g, "-");

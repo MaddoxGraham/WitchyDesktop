@@ -31,4 +31,19 @@ export class ProduitService {
         return this.http.get<Produits[]>(url);
     }
 
+    createProduit(formData:any): void{
+        const url = 'https://diane.amorce.org/api/produits';
+
+    }
+
+    
+    slugify(text: string): string {
+
+        const normalizedText = text.replace(/[^a-zA-Z0-9\s]/g, "").toLowerCase();
+        const slug = normalizedText.replace(/\s+/g, "-");
+      
+        return slug;
+      }
+      
+      
 } 

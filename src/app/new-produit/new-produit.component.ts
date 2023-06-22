@@ -40,54 +40,37 @@ export class NewProduitComponent implements OnInit{
     // Récupérez l'ID de la catégorie depuis le service
     this.currentCategoryId = this.categoryService.getCurrentCategoryId();
 
-
     this.produitPreview$ = this.createForm.valueChanges.pipe(
-     
         map(formvalue => ({ 
           ...formvalue,
-          slug: slugify(formvalue.ShortLibel),
           categorie: this.currentCategoryId,
           photos:this.photosTab
         }))
       )
-    
   }
   onSubmitForm(): void {
-    console.log(this.createForm.value);
+    
 }
-
-// deleteField(): void {
-//   const inputValue = this.createForm.value.photos;
-//   const index = this.photosTab.findIndex(photo => photo === inputValue);
-
-//   if (index !== -1) {
-//     this.photosTab.splice(index, 1);
-//   }
-// }
 
 addField(event: Event): void {
   const currentButton = event.target as HTMLButtonElement;
   const currentId = currentButton.id;
   const index = parseInt(currentId.slice(8));
   const srcActuel = this.createForm.value[`photos${index}`];
-if (srcActuel) {
+if (srcActuel && !this.photosTab.includes(srcActuel)) {
+
     this.photosTab.push(srcActuel);
-  
   console.log(this.photosTab);
 }
-
-
   if (index > 5) {
     return; // Limite maximale atteinte, ne pas ajouter de nouvel champ
   }
-
   const newId = `photos${index + 1}`;
   const nextElement = document.getElementById(newId);
   if (nextElement) {
     nextElement.classList.toggle('toggle');
   }
 }
-
 }
 
 function slugify(text: string): string {

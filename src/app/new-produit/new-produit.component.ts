@@ -49,7 +49,17 @@ export class NewProduitComponent implements OnInit{
       )
   }
   onSubmitForm(): void {
-    
+    this.produitService.createProduit(this.createForm.value, this.currentCategoryId)
+    .subscribe(
+      response => {
+        console.log(response);
+        // Faites ce que vous voulez avec les données renvoyées
+      },
+      error => {
+        console.error(error);
+        // Gérez les erreurs ici
+      }
+    );
 }
 
 addField(event: Event): void {

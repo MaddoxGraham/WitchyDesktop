@@ -24,7 +24,7 @@ import { NewProduitComponent } from './new-produit/new-produit.component';
     ProduitsComponent,
     ProduitsListComponent,
     SingleProduitComponent,
-    NewProduitComponent
+    NewProduitComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,6 +40,7 @@ export class NewProduitComponent implements OnInit{
     // Récupérez l'ID de la catégorie depuis le service
     this.currentCategoryId = this.categoryService.getCurrentCategoryId();
 
+
     this.produitPreview$ = this.createForm.valueChanges.pipe(
         map(formvalue => ({ 
           ...formvalue,
@@ -83,8 +84,6 @@ if (srcActuel && !this.photosTab.includes(srcActuel)) {
 }
 }
 
-
-/************** WARNING ! modifier pour éviter l'instanciation si un autre champs est remplis en premier.  */
 function slugify(text: string): string {
 
   const normalizedText = text.replace(/[^a-zA-Z0-9\s]/g, "").toLowerCase();
@@ -92,4 +91,3 @@ function slugify(text: string): string {
 
   return slug;
 }
-

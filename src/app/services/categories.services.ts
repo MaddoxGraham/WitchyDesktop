@@ -38,15 +38,21 @@ export class CategorieService {
     }
 
 
-    /********* Gestion de la sauvegarde de la sous categorie courante  */
+    /********* Gestion de la sauvegarde de la sous categorie courante  */  
+    private readonly CATEGORY_ID_KEY = 'currentCategoryId';
 
-    setCurrentCategoryId(categoryId: number): void {
+  // ...
 
-        this.currentCategoryId = categoryId;
-      }
-    
-      getCurrentCategoryId(): number | null {
-        return this.currentCategoryId;
-      }
+  setCurrentCategoryId(id: number): void {
+    localStorage.setItem(this.CATEGORY_ID_KEY, id.toString());
+  }
 
+  getCurrentCategoryId(): number | null {
+    const categoryId = localStorage.getItem(this.CATEGORY_ID_KEY);
+    return categoryId ? parseInt(categoryId, 10) : null;
+  }
+
+  clearCurrentCategoryId(): void {
+    localStorage.removeItem(this.CATEGORY_ID_KEY);
+  }
 }

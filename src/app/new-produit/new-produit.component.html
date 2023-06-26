@@ -5,54 +5,87 @@
       <div class="container mt-3" *ngIf="produitPreview$ | async as produit">
 
         <h2 class="mb-3">{{ produit.ShortLibel }}</h2>
-        <h5 class="mb-3">{{ produit.slug }}</h5>
         <p class="mb-3">{{ produit.LongLibel }}</p>
         <p class="mb-3 display-6">{{ produit.prxHt }} €</p>
         <div class="d-flex flex-row flex-wrap">
-          <div>
-
-            <img [src]="produit.photos" alt="Photo" style="max-height: 120px;" class="me-2 mb-2">
+          <div *ngFor="let photo of photosTab">
+            <img [src]="photo" alt="Photo" style="max-height: 120px;" class="me-2 mb-2">
           </div>
+
+
+
+
         </div>
-
-
-
       </div>
     </div>
-
-    <div class="col-md-6">
-      <!-- Formulaire de modification -->
-      <form [formGroup]="createForm">
-        <div class="mb-3">
-          <label for="ShortLibel" class="form-label">Nom du produit</label>
-          <input type="text" class="form-control" id="ShortLibel" formControlName="ShortLibel" name="ShortLibel">
-        </div>
-
-
-        <div class="mb-3">
-          <label for="LongLibel" class="form-label">Description du produit</label>
-          <textarea type="text" class="form-control" name="LongLibel" formControlName="LongLibel"
-            id="LongLibel"></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="prxHt" class="form-label">Prix du produit</label>
-          <input type="text" class="form-control" id="prxHt" name="prxHt" formControlName="prxHt" id="prxHt">
-        </div>
-
-
-        <div class="mb-3 row relativBox">
-          <div class="col-10"> <label for="prxHt" class="form-label">photos</label>
-            <input type="text" class="form-control" id="photos" name="photos" formControlName="photos" id="photos">
+      <div class="col-md-6">
+        <!-- Formulaire de modification -->
+        <form [formGroup]="createForm">
+          <div class="mb-3">
+            <label for="ShortLibel" class="form-label">Nom du produit</label>
+            <input type="text" class="form-control" id="ShortLibel" formControlName="ShortLibel" name="ShortLibel">
           </div>
-          <div class="col-2"> <button class="btn btn-primary morePicture">
-              <i class="fas fa-plus"></i>
-            </button>
-          </div>
-        </div>
 
-        <!-- Autres champs de modification -->
-        <button type="submit" class="btn btn-primary" (click)="onSubmitForm()">Créer un produit</button>
-      </form>
+
+          <div class="mb-3">
+            <label for="LongLibel" class="form-label">Description du produit</label>
+            <textarea type="text" class="form-control" name="LongLibel" formControlName="LongLibel"
+              id="LongLibel"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="prxHt" class="form-label">Prix du produit</label>
+            <input type="text" class="form-control" id="prxHt" name="prxHt" formControlName="prxHt" id="prxHt">
+          </div>
+
+          <div id="photos0" class="mb-3 row">
+            <div class="col-8">
+              <label for="prxHt" class="form-label">photo principale</label>
+              <input type="text" class="form-control" name="photos0" formControlName="photos0" id="photos0">
+            </div>
+            <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto0" (click)="addField($event)"> <i
+                class="fas fa-plus"></i> </button>
+          </div>
+
+          <div id="photos1" class="mb-3 row toggle">
+            <div class="col-8">
+              <label for="prxHt" class="form-label">photos</label>
+              <input type="text" class="form-control" name="photos1" formControlName="photos1" id="photos1">
+            </div>
+            <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto1" (click)="addField($event)"> <i
+                class="fas fa-plus"></i> </button>
+          </div>
+
+          <div id="photos2" class="mb-3 row toggle">
+            <div class="col-8">
+              <label for="prxHt" class="form-label">photos</label>
+              <input type="text" class="form-control" name="photos2" formControlName="photos2" id="photos2">
+            </div>
+            <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto2" (click)="addField($event)"> <i
+                class="fas fa-plus"></i> </button>
+          </div>
+
+          <div id="photos3" class="mb-3 row toggle">
+            <div class="col-8">
+              <label for="prxHt" class="form-label">photos</label>
+              <input type="text" class="form-control" name="photos3" formControlName="photos3" id="photos3">
+            </div>
+            <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto3" (click)="addField($event)"> <i
+                class="fas fa-plus"></i> </button>
+          </div>
+
+          <div id="photos4" class="mb-3 row toggle">
+            <div class="col-8">
+              <label for="prxHt" class="form-label">photos</label>
+              <input type="text" class="form-control" name="photos4" formControlName="photos4" id="photos4">
+            </div>
+            <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto4" (click)="addField($event)"> <i
+                class="fas fa-plus"></i> </button>
+          </div>
+
+
+          <!-- Autres champs de modification -->
+          <button type="submit" class="btn btn-primary" (click)="onSubmitForm()">Créer un produit</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>

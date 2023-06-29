@@ -33,6 +33,7 @@ export class ProduitService {
     const url = `https://diane.amorce.org/api/produits?id=${id}`;
     return this.http.get<Produits[]>(url);
   }
+  
 
   createProduit( formData: FormData, currentCategoryId: number | null ,photosTab: string[]): Observable<Produits> {
     const url = "https://diane.amorce.org/api/produits";
@@ -65,4 +66,6 @@ export class ProduitService {
 
     return slug;
   }
+
+
 }

@@ -1,16 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, forkJoin, map, of } from "rxjs";
+import { Observable, forkJoin, map, of, switchMap } from "rxjs";
 import { Produits } from "../models/produits.model";
 import { Photos } from "../models/photos.model";
 
-interface FormData {
-  ShortLibel: string;
-  LongLibel: string;
-  prxHt: number;
-  photos0: any[];
-  // Ajoutez les autres propriétés du formulaire ici
-}
 
 @Injectable({
   providedIn: "root",
@@ -35,29 +28,22 @@ export class ProduitService {
   }
   
 
-  createProduit( formData: FormData, currentCategoryId: number | null ,photosTab: string[]): Observable<Produits> {
-    const url = "https://diane.amorce.org/api/produits";
-    const nbrId = this.getAllProduits()
-    
-    //.length - 1;
-    console.log(nbrId);
-    // Effectuez les modifications nécessaires sur formData ici
-    const modifiedData = {
-      // Exemple : ne conservez que les propriétés nécessaires
-      ShortLibel: formData.ShortLibel,
-      slug: this.slugify(formData.ShortLibel),
-      LongLibel: formData.LongLibel,
-      prxHt: formData.prxHt,
-      categorie: currentCategoryId !== null ? currentCategoryId.toString() : "",
-      id:5,
-     // id: nbrId + 1,
-      photos: photosTab,
-    };
+  public createProduit( formvalue: {ShortLibel: string, LongLibel: string, prxHt: number,  }, currentCategoryId: number | null): Observable<Produits> {
+   
+    return this.getAllProduits().pipe(
+        map(produits => [...produits].sort((a, b)=>a.id - b.id)),
+        map(sortedproduits => sortedproduits[sortedproduits.length - 1]),
+        map(previousproduit => ({
+            ...formvalue,
+            slug: this.slugify(formvalue.ShortLibel),
+            categorie: `/api/categories/${currentCategoryId?.toString()}`,
+        })),
+        switchMap(newproduit => this.http.post<Produits>('https://diane.amorce.org/api/produits', newproduit)),
+    )
+  }
 
-    // Créez un nouvel observable à partir du tableau modifié
-    const productInfos = of(modifiedData);
+  public addPhoto(){
 
-    return productInfos;
   }
 
   slugify(text: string): string {

@@ -14,6 +14,7 @@ import { CategorieService } from "../services/categories.services";
 export class NewProduitComponent implements OnInit {
   
   createForm!: FormGroup;
+  addPhotos!:FormGroup;
   produitPreview$!: Observable<Produits>;
   currentCategoryId!: number | null;
   photosTab: string[] = [];
@@ -30,17 +31,11 @@ export class NewProduitComponent implements OnInit {
       ShortLibel: [null],
       LongLibel: [null],
       prxHt: [null],
-      photos0: [null],
-      photos1: [null],
-      photos2: [null],
-      photos3: [null],
-      photos4: [null],
-      photos5: [null],
+  
     });
 
     // Récupérez l'ID de la catégorie depuis le service
     this.currentCategoryId = this.categoryService.getCurrentCategoryId();
-
     this.produitPreview$ = this.createForm.valueChanges.pipe(
       map((formvalue) => ({
         ...formvalue,
@@ -48,6 +43,15 @@ export class NewProduitComponent implements OnInit {
         photos: this.photosTab,
       }))
     );
+
+    this.addPhotos = this.formBuilder.group({
+      photos0: [null],
+      photos1: [null],
+      photos2: [null],
+      photos3: [null],
+      photos4: [null],
+      photos5: [null],
+    })
   }
 
   addField(event: Event): void {
@@ -73,7 +77,6 @@ export class NewProduitComponent implements OnInit {
       .createProduit(
         this.createForm.value,
         this.currentCategoryId,
-        this.photosTab
       )
       .subscribe(
         (response) => {

@@ -6,7 +6,6 @@ export class Produits{
         public prxHt:number,
         public slug:string,
         public categorie : string,
-        public photos:any[]
         ){}
 
 }

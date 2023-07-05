@@ -17,6 +17,10 @@ export class ProduitService {
     return this.http.get<Produits[]>("https://diane.amorce.org/api/produits");
   }
 
+  getAllPhotos(): Observable<Photos[]> {
+    return this.http.get<Photos[]>("https://diane.amorce.org/api/photos");
+  }
+
   getAllPhotoByRef(ref: number): Observable<Photos[]> {
     const url = `https://diane.amorce.org/api/photos?RefProduit=${ref}`;
     return this.http.get<Photos[]>(url);
@@ -27,6 +31,20 @@ export class ProduitService {
     return this.http.get<Produits[]>(url);
   }
   
+  private getMaxProduitId(): Observable<number> {
+    return this.getAllProduits().pipe(
+      map(produits => [...produits].sort((a, b) => a.id - b.id)),
+      map(sortedProduits => sortedProduits[sortedProduits.length - 1].id),
+    );
+  }
+  
+  private getMaxPhotoId(): Observable<number> {
+    return this.getAllPhotos().pipe(
+      map(photos => [...photos].sort((a, b) => a.id - b.id)),
+      map(sortedPhotos => sortedPhotos[sortedPhotos.length - 1].id),
+    );
+  }
+
 
   public createProduit( formvalue: {ShortLibel: string, LongLibel: string, prxHt: number,  }, currentCategoryId: number | null): Observable<Produits> {
    
@@ -42,8 +60,29 @@ export class ProduitService {
     )
   }
 
-  public addPhoto(){
-
+  public addPhoto(formvalue: { [key: string]: string | null }): Observable<Photos[]> {
+    return forkJoin({
+      maxProduitId: this.getMaxProduitId(),
+      maxPhotoId: this.getMaxPhotoId(),
+    }).pipe(
+      switchMap(({ maxProduitId, maxPhotoId }) => {
+        const photos: Partial<Photos>[] = [];
+  
+        for (const key in formvalue) {
+          if (formvalue[key]) {
+            const photo: Partial<Photos> = {
+              id: 0,
+              src: formvalue[key],
+              isPrimary: key === 'photos0' ? true : false,
+              RefProduit: `/api/produits/${maxProduitId?.toString()}`
+            };
+            photos.push(photo);
+          }
+        }
+  
+        return this.http.post<Photos[]>('https://diane.amorce.org/api/photos', photos);
+      })
+    );
   }
 
   slugify(text: string): string {

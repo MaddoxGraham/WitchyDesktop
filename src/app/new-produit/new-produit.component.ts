@@ -58,7 +58,7 @@ export class NewProduitComponent implements OnInit {
     const currentButton = event.target as HTMLButtonElement;
     const currentId = currentButton.id;
     const index = parseInt(currentId.slice(8));
-    const srcActuel = this.createForm.value[`photos${index}`];
+    const srcActuel = this.addPhotos.value[`photos${index}`];
     if (srcActuel && !this.photosTab.includes(srcActuel)) {
       this.photosTab.push(srcActuel);
       console.log(this.photosTab);
@@ -72,13 +72,14 @@ export class NewProduitComponent implements OnInit {
       nextElement.classList.toggle("toggle");
     }
   }
-  onSubmitForm(): void {
-    this.produitService
-      .createProduit(
-        this.createForm.value,
-        this.currentCategoryId,
-      )
-      .subscribe(
+ onSubmitForm(): void {
+  this.produitService.createProduit(this.createForm.value, this.currentCategoryId).subscribe(
+    (response) => {
+      console.log(response);
+      // Faites ce que vous voulez avec les données renvoyées
+
+      // Appel addPhoto() ici
+      this.produitService.addPhoto(this.addPhotos.value).subscribe(
         (response) => {
           console.log(response);
           // Faites ce que vous voulez avec les données renvoyées
@@ -88,7 +89,13 @@ export class NewProduitComponent implements OnInit {
           // Gérez les erreurs ici
         }
       );
-  } 
+    },
+    (error) => {
+      console.error(error);
+      // Gérez les erreurs ici
+    }
+  );
+}
 }
 
 function slugify(text: string): string {

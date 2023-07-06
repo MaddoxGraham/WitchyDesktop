@@ -29,10 +29,12 @@ export class ProduitsListComponent implements OnInit {
 this.produits$ = this.produitService.getAllProduits().pipe(
   map(produits => produits.filter(produit => produit.categorie === `/api/categories/${categoryId}`)),
   tap(produits => {
-   console.log(produits); // Affiche les produits filtrés dans la console
+   
  })
 )
   }
+
+
  
   navigateToNew(): void {
     this.router.navigateByUrl('categorie/produit/new');

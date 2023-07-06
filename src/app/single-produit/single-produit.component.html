@@ -37,8 +37,29 @@
           </div>
 
           <!-- Autres champs de modification -->
-          <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        
         </form>
+
+        <form  #modifyPhotoForm="ngForm" (ngSubmit)="onSubmitForm(modifyPhotoForm)">
+
+          <div class="d-flex flex-row flex-wrap"> 
+          <div *ngFor="let photo of photos$ | async" class="modifyPhotos" draggable="true" (dragstart)="onDragStart($event, photo)">
+            <img [src]="photo.src" alt="Photo" style="max-height: 120px;" class="me-2 mb-2">
+            <div>
+              <button class="btn-delete btn btn-danger" (click)="deletePhoto(photo.id)">
+                <i class="fa-solid fa-trash"></i>
+              </button> 
+            </div>
+          </div>
+        
+        </div>
+          <div class="dropZone" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+            Déposez ici pour définir comme photo principale
+          </div>
+          
+        </form>
+        
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
       </div>
     </div>
   </div>

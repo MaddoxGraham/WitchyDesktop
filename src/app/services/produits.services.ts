@@ -99,5 +99,21 @@ export class ProduitService {
     return slug;
   }
 
+  deleteProduit(id: number): Observable<void> {
+    return this.http.delete<void>(`https://diane.amorce.org/api/produits/${id}`);
+  }
+
+  setPrimaryPhoto(photoId: number): Observable<any> {
+    return this.http.get<any>(`https://diane.amorce.org/api/photos/${photoId}`).pipe(
+      switchMap((photo) => {
+        const updatedPhoto = {
+          ...photo,
+          isPrimary: true,
+        };
+        return this.http.put<any>(`https://diane.amorce.org/api/photos/${photoId}`, updatedPhoto);
+      })
+    );
+  }
+  
 
 }

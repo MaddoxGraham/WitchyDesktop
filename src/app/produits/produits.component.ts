@@ -25,6 +25,19 @@ export class ProduitsComponent implements OnInit{
 
 }
 
+onDeleteProduit(id: number): void {
+  this.produitService.deleteProduit(id).subscribe(
+    () => {
+      console.log(`Produit ${id} supprimé avec succès.`);
+      // Recharger la même page
+      window.location.reload();
+    },
+    (error) => {
+      console.error(`Erreur lors de la suppression du produit ${id}.`, error);
+    }
+  );
+}
+
 navigateToSingle(id: number): void {
   this.router.navigateByUrl('/categorie/produit/' + id);
 }

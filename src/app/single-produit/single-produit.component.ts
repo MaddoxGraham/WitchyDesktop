@@ -16,7 +16,7 @@ export class SingleProduitComponent implements OnInit  {
     produit!: Produits;
     produit$!: Observable<Produits[]>;
     photos$!: Observable<Photos[]>;
-
+    draggedPhoto: Photos | null = null;
 
     ShortLibel!: string;
     LongLibel!: string;
@@ -35,4 +35,34 @@ export class SingleProduitComponent implements OnInit  {
       onSubmitForm(form: NgForm){
         console.log(form.value);
       }
-}
+
+      deletePhoto(id:number){
+        //delete une photo via son id
+      }
+      onDragStart(event: DragEvent, photo: Photos): void {
+        this.draggedPhoto = photo;
+      }
+    
+      onDragOver(event: DragEvent): void {
+        event.preventDefault();
+      }
+    
+      onDrop(event: DragEvent): void {
+        event.preventDefault();
+        if (this.draggedPhoto) {
+          // Définir la photo comme photo principale
+          this.produitService.setPrimaryPhoto(this.draggedPhoto.id).subscribe(
+            () => {
+              console.log(`Photo définie comme photo principale avec succès.`);
+           
+
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+          this.draggedPhoto = null;
+        }
+      }
+
+    }

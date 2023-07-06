@@ -1,0 +1,19 @@
+GET https://diane.amorce.org/api/photos
+
+###
+
+GET https://diane.amorce.org/api/photos/1
+
+###
+
+POST https://diane.amorce.org/api/photos
+Content-Type: application/json
+Accept: application/json
+
+{
+  "src": "https:\/\/img.ltwebstatic.com\/images3_pi\/2022\/10\/18\/1666062772a8652467ad2ebfa7fd41879694c2ac3b_thumbnail_600x.webp",
+  "isprimary": true,
+  "RefProduit": "\/api\/produits\/1"
+}
+###
+

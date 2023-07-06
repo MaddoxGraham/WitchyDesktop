@@ -53,6 +53,7 @@ export class ProduitService {
         map(sortedproduits => sortedproduits[sortedproduits.length - 1]),
         map(previousproduit => ({
             ...formvalue,
+            prxHt: String(formvalue.prxHt),
             slug: this.slugify(formvalue.ShortLibel),
             categorie: `/api/categories/${currentCategoryId?.toString()}`,
         })),
@@ -70,20 +71,26 @@ export class ProduitService {
   
         for (const key in formvalue) {
           if (formvalue[key]) {
+            console.log(`Key: ${key}`);
+            console.log(`Value: ${formvalue[key]}`);
+  
             const photo: Partial<Photos> = {
               id: 0,
-              src: formvalue[key],
+              src: formvalue[key]?.toString(),
               isPrimary: key === 'photos0' ? true : false,
-              RefProduit: `/api/produits/${maxProduitId?.toString()}`
+              RefProduit: maxProduitId?.toString()
             };
+            console.log(photo);
             photos.push(photo);
           }
         }
   
-        return this.http.post<Photos[]>('https://diane.amorce.org/api/photos', photos);
+        return this.http.post<Photos[]>('https://diane.amorce.org/api/post_photos', photos);
       })
     );
   }
+
+  
 
   slugify(text: string): string {
     const normalizedText = text.replace(/[^a-zA-Z0-9\s]/g, "").toLowerCase();

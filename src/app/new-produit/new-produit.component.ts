@@ -3,7 +3,7 @@ import { ProduitService } from "../services/produits.services";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Observable, distinctUntilChanged, map } from "rxjs";
 import { Produits } from "../models/produits.model";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CategorieService } from "../services/categories.services";
 
 @Component({
@@ -23,7 +23,8 @@ export class NewProduitComponent implements OnInit {
     private produitService: ProduitService,
     private route: ActivatedRoute,
     private categoryService: CategorieService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router:Router,
   ) {}
 
   ngOnInit(): void {
@@ -72,27 +73,34 @@ export class NewProduitComponent implements OnInit {
       nextElement.classList.toggle("toggle");
     }
   }
+
+
+  arePhotosEmpty(formvalue: { [key: string]: string }): boolean {
+    return (
+      !formvalue['photos0'] &&
+      !formvalue['photos1'] &&
+      !formvalue['photos2'] &&
+      !formvalue['photos3'] &&
+      !formvalue['photos4']
+    );
+  }
+
  onSubmitForm(): void {
   this.produitService.createProduit(this.createForm.value, this.currentCategoryId).subscribe(
     (response) => {
-      console.log(response);
-      // Faites ce que vous voulez avec les données renvoyées
-
       // Appel addPhoto() ici
       this.produitService.addPhoto(this.addPhotos.value).subscribe(
         (response) => {
-          console.log(response);
+          this.router.navigateByUrl(`categorie/${this.currentCategoryId}`)
           // Faites ce que vous voulez avec les données renvoyées
         },
         (error) => {
           console.error(error);
-          // Gérez les erreurs ici
         }
       );
     },
     (error) => {
       console.error(error);
-      // Gérez les erreurs ici
     }
   );
 }

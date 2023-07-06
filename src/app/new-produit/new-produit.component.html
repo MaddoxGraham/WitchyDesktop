@@ -34,7 +34,7 @@
         </div>
         <div class="mb-3">
           <label for="prxHt" class="form-label">Prix du produit</label>
-          <input type="text" class="form-control" id="prxHt" name="prxHt" formControlName="prxHt" id="prxHt">
+          <input type="number" class="form-control" id="prxHt" name="prxHt" formControlName="prxHt" id="prxHt">
         </div>
       </form>
       <form [formGroup]="addPhotos">
@@ -43,8 +43,12 @@
           <label for="prxHt" class="form-label">photo principale</label>
           <input type="text" class="form-control" name="photos0" formControlName="photos0" id="photos0">
         </div>
-        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto0" (click)="addField($event)"> <i
-            class="fas fa-plus"></i> </button>
+        <button class="col-2 me-1 mt-auto btn btn-success"
+        id="addphoto0"
+        (click)="addField($event)"
+        [disabled]="arePhotosEmpty(addPhotos.value)">
+        <i class="fas fa-plus"></i>
+      </button>
       </div>
 
       <div id="photos1" class="mb-3 row toggle">
@@ -52,7 +56,7 @@
           <label for="prxHt" class="form-label">photos</label>
           <input type="text" class="form-control" name="photos1" formControlName="photos1" id="photos1">
         </div>
-        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto1" (click)="addField($event)"> <i
+        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto1" (click)="addField($event)" [disabled]="arePhotosEmpty(addPhotos.value)"> <i
             class="fas fa-plus"></i> </button>
       </div>
 
@@ -61,7 +65,7 @@
           <label for="prxHt" class="form-label">photos</label>
           <input type="text" class="form-control" name="photos2" formControlName="photos2" id="photos2">
         </div>
-        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto2" (click)="addField($event)"> <i
+        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto2" (click)="addField($event)"[disabled]="arePhotosEmpty(addPhotos.value)"> <i
             class="fas fa-plus"></i> </button>
       </div>
 
@@ -70,7 +74,7 @@
           <label for="prxHt" class="form-label">photos</label>
           <input type="text" class="form-control" name="photos3" formControlName="photos3" id="photos3">
         </div>
-        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto3" (click)="addField($event)"> <i
+        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto3" (click)="addField($event)"[disabled]="arePhotosEmpty(addPhotos.value)"> <i
             class="fas fa-plus"></i> </button>
       </div>
 
@@ -79,7 +83,7 @@
           <label for="prxHt" class="form-label">photos</label>
           <input type="text" class="form-control" name="photos4" formControlName="photos4" id="photos4">
         </div>
-        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto4" (click)="addField($event)"> <i
+        <button class="col-2 me-1 mt-auto btn btn-success" id="addphoto4" (click)="addField($event)"[disabled]="arePhotosEmpty(addPhotos.value)"> <i
             class="fas fa-plus"></i> </button>
       </div>
 

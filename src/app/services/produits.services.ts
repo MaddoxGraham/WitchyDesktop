@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, forkJoin, map, of, switchMap } from "rxjs";
 import { Produits } from "../models/produits.model";
 import { Photos } from "../models/photos.model";
@@ -103,14 +103,38 @@ export class ProduitService {
     return this.http.delete<void>(`https://diane.amorce.org/api/produits/${id}`);
   }
 
-  setPrimaryPhoto(photoId: number): Observable<any> {
-    return this.http.get<any>(`https://diane.amorce.org/api/photos/${photoId}`).pipe(
+  deletePhoto(id: number): Observable<void> {
+    return this.http.delete<void>(`https://diane.amorce.org/api/photos/${id}`);
+  }
+
+  setPrimaryPhoto(photoId: number, refProduit: number): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
+  
+    return this.http.get<any[]>(`https://diane.amorce.org/api/photos?RefProduit=${refProduit}&isprimary=true`).pipe(
+      switchMap((primaryPhotos) => {
+        const updatedPrimaryPhotos$ = primaryPhotos.map((photo) => {
+          const updatedPhoto = {
+            ...photo,
+            isPrimary: false,
+          };
+          console.log(updatedPhoto.id + 'first : primary must be false ');
+          console.log(updatedPhoto.isPrimary);
+          return this.http.patch<any>(`https://diane.amorce.org/api/photos/${photo.id}`, updatedPhoto, { headers });
+        });
+      
+        return forkJoin(updatedPrimaryPhotos$);
+      }),
+      switchMap(() => {
+        return this.http.get<any>(`https://diane.amorce.org/api/photos/${photoId}`);
+      }),
       switchMap((photo) => {
         const updatedPhoto = {
           ...photo,
           isPrimary: true,
         };
-        return this.http.put<any>(`https://diane.amorce.org/api/photos/${photoId}`, updatedPhoto);
+        console.log(updatedPhoto.id + 'second : primary should be true');
+        console.log(updatedPhoto.isPrimary);
+        return this.http.patch<any>(`https://diane.amorce.org/api/photos/${photoId}`, updatedPhoto, { headers });
       })
     );
   }

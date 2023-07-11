@@ -17,7 +17,9 @@
 
     } 
 
-} .drop-zone {
+}
+
+.dropZone {
         width: 200px;
         height: 200px;
         border: 2px dashed #bbb;
@@ -28,15 +30,15 @@
         color: #999;
       }
       
-      .drop-zone.drag-over {
+      .dropZone .drag-over {
         background-color: #f7f7f7;
       }
       
-      .drop-zone .message {
+      .dropZone .message {
         margin-top: 20px;
       }
       
-      .drop-zone .message:hover {
+      .dropZone .message:hover {
         cursor: pointer;
         color: #555;
         text-decoration: underline;

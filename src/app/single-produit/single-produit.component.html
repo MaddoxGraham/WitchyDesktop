@@ -43,19 +43,28 @@
         <form  #modifyPhotoForm="ngForm" (ngSubmit)="onSubmitForm(modifyPhotoForm)">
 
           <div class="d-flex flex-row flex-wrap"> 
-          <div *ngFor="let photo of photos$ | async" class="modifyPhotos" draggable="true" (dragstart)="onDragStart($event, photo)">
+          <div *ngFor="let photo of photos$ | async" class="modifyPhotos" draggable="true" (dragstart)="onDragStart($event, photo)"> 
+             <p class="display-5"> {{photo}} </p>
+             <p class="display-5"> {{photo.isPrimary}} </p>
             <img [src]="photo.src" alt="Photo" style="max-height: 120px;" class="me-2 mb-2">
             <div>
               <button class="btn-delete btn btn-danger" (click)="deletePhoto(photo.id)">
                 <i class="fa-solid fa-trash"></i>
               </button> 
             </div>
+          
           </div>
         
         </div>
-          <div class="dropZone" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
-            Déposez ici pour définir comme photo principale
+        
+        <div class="dropZone" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+          Déposez ici pour définir comme photo principale
+          <div *ngFor="let photo of photos$ | async">
+            <ng-container *ngIf="photo.isPrimary">
+              <img [src]="photo.src" alt="Photo Principale" style="max-height: 120px;" class="me-2 mb-2">
+            </ng-container>
           </div>
+        </div>
           
         </form>
         

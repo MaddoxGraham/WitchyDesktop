@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
 
-This is a preview of the project called "Witchy," the desktop application. With this application, you will be able to see all the products on your website. You will also be able to modify, delete, or add products, as well as consult graphs to track the evolution of your business.
+This is a preview of the project called "Witchy," the desktop application. Witchy is a multiplateform shop specialized in underground culture and cyberpunk clothes. You can consult the symfony version of the application here : https://github.com/MaddoxGraham/PROJET_Witchy . This is the desktop application of Witchy.With this application, you will be able to see all the products on your website. You will also be able to modify, delete, or add products, as well as consult graphs to track the evolution of your business.
 
 <h3>Preview of witchy </h3>
 
